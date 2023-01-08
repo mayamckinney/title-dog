@@ -29,11 +29,19 @@ User.init(
             },
         },
         password: {
-            type:DataTypes.STRING,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 len: [8],
             },
+        },
+        title: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        permissions: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false
         },
     },
     {
@@ -42,4 +50,6 @@ User.init(
         freezeTableName: true,
         modelName: 'users',
     }
-)
+);
+
+module.exports = User;

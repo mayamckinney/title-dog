@@ -2,21 +2,29 @@
     {
         "name": "Terri",
         "email": "terri@titledog.com",
-        "password": "password"
+        "password": "password",
+        "title": "Receiptionist",
+        "permissions": true
     },
     {
         "name": "Johnathan",
         "email": "johnathan@titledog.com",
-        "password": "password"
+        "password": "password",
+        "title": "Kennel Tech",
+        "permissions": false
     },
     {
         "name": "Courtney",
         "email": "courtney@titledog.com",
-        "password": "password"
+        "password": "password",
+        "title": "Office Manager",
+        "permissions": true
     },
     {
         "name": "Robert",
         "email": "robert@titledog.com",
-        "password": "password"
+        "password": "password",
+        "title": "Receptionist",
+        "permissions": true
     }
 ]

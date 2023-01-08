@@ -3,6 +3,7 @@ const { Dog, Kennel, Owner, User } = require('../models');
 const dogData = require('./dog-seeds.json');
 const ownerData = require('./owner-seeds.json');
 const userData = require('./user-data.json');
+const kennelData = require('./kennel-seeds.json');
 
 
 const seedDatabase = async () => {
@@ -22,8 +23,10 @@ const seedDatabase = async () => {
             owner_id: owners[Math.floor(Math.random() * owners.length)].id,
         });
     };
-// still working on this... need to figure out how to only seed if dog is selected
-//    for (const kennels of kennel)
+
+    const kennels = await Kennel.bulkCreate(kennelData, {
+        returning: true,
+    });
 
     process.exit(0);
 };

@@ -23,7 +23,7 @@ Owner.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        dogs: {
+        dog_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'dog',

@@ -44,12 +44,6 @@ Dog.init(
         sequelize,
         timestamps: false,
         freezeTableName: true,
-        modelName: 'dogs',
-    },
-    {
-        sequelize,
-        timestamps: false,
-        freezeTableName: true,
         modelName: 'dog',
     }
 );
