@@ -1,28 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-.wrapper {
+#wrapper {
     width: 770px;
     background: white;
     border-radius: 20px;
 }
 
-.wrapper header {
+#wrapper header {
     display: flex;
     align-items: center;
     padding: 25px 30px 10px;
     justify-content: space-between;
 }
 
-body {
+/* body {
     display: flex;
     margin-top: 50px;
     justify-content: center;
     background-color: #FFFCFF;
     background-image: url("IMG_4167.jpg");
     background-size: 100%;
-}
+} */
 
-button {
+/* button {
     width: 120px;
     cursor: pointer;
     border: none;
@@ -31,7 +31,7 @@ button {
     border-radius: 20px;
     color: white;
     box-shadow: 0px 0px 2px grey;
-}
+} */
 
 #header {
     padding: 10px;
@@ -50,9 +50,9 @@ button {
 }
 
 #weekdays {
-    width: 100%;
+    /* width: 100%;
     text-align: center;
-    display: flex;
+    display: flex; */
     color: darkblue;
 }
 

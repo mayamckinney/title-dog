@@ -1,17 +1,22 @@
 let start = 0;
 let click = null;
 let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
+
+
 const calendar = document.getElementById('calendar');
 const newEventForm = document.getElementById('newEventForm');
 const deleteEventForm = document.getElementById('deleteEventForm');
 const backDrop = document.getElementById('FormBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+
 function renderCalendar() {
     const date = new Date();
     if (start !== 0) {
         date.setMonth(new Date().getMonth() + start);
     }
+
     const month = date.getMonth();
     const day = date.getDate();
     const year = date.getFullYear();
@@ -23,10 +28,13 @@ function renderCalendar() {
         month: 'numeric',
         day: 'numeric',
     });
+
     const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
+
     document.getElementById('monthDisplay').innerText =
         `${date.toLocaleDateString('en-us', { month: 'long' })} ${year}`;
     calendar.innerHTML = '';
+
     for (let i = 1; i <= paddingDays + daysInMonth; i++) {
         const daySquare = document.createElement('div');
         daySquare.classList.add('day');
@@ -50,6 +58,7 @@ function renderCalendar() {
         calendar.appendChild(daySquare);
     }
 }
+
 function openForm(date) {
     click = date;
     const eventForDay = events.find(e => e.date === click);
@@ -61,6 +70,7 @@ function openForm(date) {
     }
     backDrop.style.display = 'block';
 }
+
 function closeForm() {
     eventTitleInput.classList.remove('error');
     newEventForm.style.display = 'none';
@@ -70,6 +80,7 @@ function closeForm() {
     click = null;
     renderCalendar();
 }
+
 function saveEvent() {
     if (eventTitleInput.value) {
         eventTitleInput.classList.remove('error');
@@ -83,11 +94,13 @@ function saveEvent() {
         eventTitleInput.classList.add('error');
     }
 }
+
 function deleteEvent() {
     events = events.filter(e => e.date !== click);
     localStorage.setItem('events', JSON.stringify(events));
     closeForm();
 }
+
 function buttons() {
     document.getElementById('nextMonth').addEventListener('click', () => {
         start++;
@@ -103,5 +116,6 @@ function buttons() {
     document.getElementById('closeButton').addEventListener('click', closeForm);
     document.getElementById('newButton').addEventListener('click', saveEvent);
 }
+
 buttons();
 renderCalendar();

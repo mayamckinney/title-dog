@@ -1,44 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title-dog</title>
-    <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" type="text/css" href="../public/assets/style.css">
-  </head>
-  <body>
-    <div class="wrapper">
-      <div id="header">
-        <button id="previousMonth">Previous Month</button>
-        <div id="monthDisplay"></div>
-        <button id="nextMonth">Next Month</button>
-      </div>
-      <div id="weekdays">
-        <div>Sunday</div>
-        <div>Monday</div>
-        <div>Tuesday</div>
-        <div>Wednesday</div>
-        <div>Thursday</div>
-        <div>Friday</div>
-        <div>Saturday</div>
-      </div>
-      <div id="calendar"></div>
-    </div>
-    <div id="newEventForm">
-      <h2>New Reservation</h2>
-      <input id="eventTitleInput" placeholder="Owner Name" />
-      <button id="saveButton">Save</button>
-      <button id="cancelButton">Cancel</button>
-    </div>
-    <div id="deleteEventForm">
-      <h2>Reservation</h2>
-      <p id="eventText"></p>
-      <button id="deleteButton">Delete</button>
-      <button id="closeButton">Close</button>
-      <button id="newButton">New</button>
-    </div>
-    <div id="FormBackDrop"></div>
-    <script src="../public/assets/script.js" defer></script>
-  </body>
+<div class="container-sm bg-body-tertiary">
+  <div class="d-flex justify-content-between align-items-center">
+    <button id="previousMonth" type="button" class="btn btn-outline-dark">Previous Month</button>
+    <div id="monthDisplay"></div>
+    <button id="nextMonth" type="button" class="btn btn-outline-dark">Next Month</button>
+  </div>
+  <div id="weekdays" class="d-flex text-center justify-content-evenly w-100">
+    <div>Sunday</div>
+    <div>Monday</div>
+    <div>Tuesday</div>
+    <div>Wednesday</div>
+    <div>Thursday</div>
+    <div>Friday</div>
+    <div>Saturday</div>
+  </div>
+  <div id="calendar"></div>
+</div>
+<div id="newEventForm" class="position-absolute top-50 start-50 translate-middle">
+  <h2>New Reservation</h2>
+  <input id="eventTitleInput" placeholder="Owner Name" />
+  <button id="saveButton" class="btn">Save</button>
+  <button id="cancelButton" class="btn">Cancel</button>
+</div>
+<div id="deleteEventForm" class="position-absolute top-50 start-50 translate-middle">
+  <h2>Reservation</h2>
+  <p id="eventText"></p>
+  <button id="deleteButton" class="btn">Delete</button>
+  <button id="closeButton" class="btn">Close</button>
+  <button id="newButton" class="btn">New</button>
+</div>
+<div id="FormBackDrop"></div>

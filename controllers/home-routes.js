@@ -1,70 +1,68 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { Dog, Owner, Kennel, User } = require('../models');
+const withAuth = require('../utils/auth');
+
 
 router.get('/', (req, res) => {
     // If the user is already logged in, redirect to the homepage
     if (req.session.loggedIn) {
-      res.redirect('/');
+      res.redirect('schedule');
       return;
     }
     // Otherwise, render the 'login' template
-    res.render('logins');
+    res.render('login');
   });
 
-router.get('/schedule', (req, res) => {
-    res.render('schedule');
-});
-
-router.get('/dogs', (req, res) => {
-    res.render('dogs');
-});
-
-// login post route
-router.post('/', async (req, res) => {
+router.get('/schedule', withAuth, async (req, res) => {
     try {
-        const userData = await User.findOne({
-            where: {
-                email: req.body.email,
-            },
+        const ownerData = await Owner.findAll({
+            include: [
+                {
+                    model: Dog,
+                },
+            ],
         });
-  
-        if (!userData) {
-            res
-                .status(400)
-                .json({ message: 'Incorrect email or password.' });
-            return;
-        }
-  
-        const validPassword = await userData.checkPassword(req.body.password);
-  
-        if (!validPassword) {
-            res
-                .status(400)
-                .json({ message: 'Incorrect email or password.' });
-            return;
-        }
-  
-        req.session.save(() => {
-            req.session.loggedIn = true;
-            res
-                .status(200)
-                .json({ user: userData, message: 'Logged in!' });
+
+        const owners = ownerData.map((owner) => owner.get({ plain: true }));
+        
+        res.render('schedule', {
+            owners,
+            logged_in: req.session.logged_in
         });
     } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
+        res.status(500).json(err);
     }
 });
 
-// logout post route
-router.post('/logout', (req, res) => {
-    if (req.session.loggedIn) {
-        req.session.destroy(() => {
-            res.status(204).end();
-        });
-    } else {
-        res.status(404).end();
-    }
-});
+router.get('/dogs/:id', async (req, res) => {
+    try {
+      const dogData = await Dog.findByPk(req.params.id, {
+        include: [
+          {
+            model: Owner,
+            attributes: ['first_name',
+            'last_name'],
+          },
+        ],
+      });
   
+      const dog = dogData.get({ plain: true });
+  
+      res.render('dog', {
+        ...dog,
+        logged_in: req.session.logged_in
+      });
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+router.get('/dogs', (req, res) => {
+    if (req.session.loggedIn) {
+        res.render('dogs');
+        return;
+    }
+    res.render('login');
+});
+
 module.exports = router;

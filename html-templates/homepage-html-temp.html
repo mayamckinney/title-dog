@@ -24,15 +24,43 @@
               <a class="nav-link active" aria-current="page" href="#">Home</a>
               <a class="nav-link" href="#">Owners</a>
               <a class="nav-link" href="#">Dogs</a>
-              {{#if logged_in}}
               <a class="nav-link">Logout</a>
-              {{/if}}
             </div>
           </div>
         </div>
       </nav>
 
-  {{{ body }}}
+      <div class="container-sm bg-body-tertiary">
+        <div class="d-flex justify-content-between align-items-center">
+          <button id="previousMonth" type="button" class="btn btn-outline-dark">Previous Month</button>
+          <div id="monthDisplay"></div>
+          <button id="nextMonth" type="button" class="btn btn-outline-dark">Next Month</button>
+        </div>
+        <div id="weekdays" class="d-flex text-center justify-content-evenly w-100">
+          <div>Sunday</div>
+          <div>Monday</div>
+          <div>Tuesday</div>
+          <div>Wednesday</div>
+          <div>Thursday</div>
+          <div>Friday</div>
+          <div>Saturday</div>
+        </div>
+        <div id="calendar"></div>
+      </div>
+      <div id="newEventForm" class="position-absolute top-50 start-50 translate-middle">
+        <h2>New Reservation</h2>
+        <input id="eventTitleInput" placeholder="Owner Name" />
+        <button id="saveButton" class="btn">Save</button>
+        <button id="cancelButton" class="btn">Cancel</button>
+      </div>
+      <div id="deleteEventForm" class="position-absolute top-50 start-50 translate-middle">
+        <h2>Reservation</h2>
+        <p id="eventText"></p>
+        <button id="deleteButton" class="btn">Delete</button>
+        <button id="closeButton" class="btn">Close</button>
+        <button id="newButton" class="btn">New</button>
+      </div>
+      <div id="FormBackDrop"></div>
       
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -41,9 +69,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
     integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
     crossorigin="anonymous"></script>
-<script src="../../public/assets/script.js"></script>
-{{#if logged_in}}
-<script src="../../public/assets/logout.js"></script>
-{{/if}}
+<script src="../public/assets/script.js"></script>
 
 </html>
